@@ -25,20 +25,20 @@ namespace PingThreads
 
             int pointDeDepart = 0;
             int quantity = Int32.Parse(textBoxQuantite.Text);
-            List<String> adresses = new List<String>();
-            adresses.Add(toTest);
+            List<String> addresses = new List<String>();
+            addresses.Add(toTest);
 
             for (int i = 0; i < quantity - 1; i++)
             {
-                String[] partiesAdresse;
-                partiesAdresse = toTest.Split(".");
-                pointDeDepart = Int32.Parse(partiesAdresse[partiesAdresse.Length - 1]);
-                String nouveauAdresse = partiesAdresse[0] + "." + partiesAdresse[1] + "." + partiesAdresse[2] + "." + (pointDeDepart + (i + 1));
-                adresses.Add(nouveauAdresse);
+                String[] partiesAddresse;
+                partiesAddresse = toTest.Split(".");
+                pointDeDepart = Int32.Parse(partiesAddresse[partiesAddresse.Length - 1]);
+                String nouveauAdresse = partiesAddresse[0] + "." + partiesAddresse[1] + "." + partiesAddresse[2] + "." + (pointDeDepart + (i + 1));
+                addresses.Add(nouveauAdresse);
             }
 
 
-            foreach (String address in adresses)
+            foreach (String address in addresses)
             {
                 Thread thread = new Thread(() => PingIP(address));
                 thread.Start();
@@ -59,7 +59,7 @@ namespace PingThreads
                 }
                 else
                 {
-                    item.SubItems.Add("Ping échoué " + reply.Status);
+                    item.SubItems.Add("Ping failed " + reply.Status);
                 }
 
             }
