@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PingThreads", "PingThreads\PingThreads.csproj", "{34462E0A-C31D-400E-A9DC-B6AB51316D05}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{34462E0A-C31D-400E-A9DC-B6AB51316D05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34462E0A-C31D-400E-A9DC-B6AB51316D05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34462E0A-C31D-400E-A9DC-B6AB51316D05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34462E0A-C31D-400E-A9DC-B6AB51316D05}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EF779B11-0854-4CBD-A525-61D3A99E7B86}
+	EndGlobalSection
+EndGlobal
