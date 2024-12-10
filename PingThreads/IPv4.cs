@@ -57,7 +57,6 @@ namespace PingThreads
 
         public bool checkParts()
         {
-
             if (part4 > 254)
             {
                 int switches = part4 / 255;
@@ -71,11 +70,12 @@ namespace PingThreads
                 part2 = part2 + (part3 / 255);
                 part3 = part3 - (255 * switches);
             }
+
             if (part2 > 254)
             {
                 int switches = part2 / 255;
                 part1 = part1 + (part2 / 255);
-                part2 = part2 + switches - (255 * switches);
+                part2 = part2 - (255 * switches);
             }
 
             if (part1 > 254)
