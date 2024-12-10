@@ -23,10 +23,14 @@ namespace PingThreads
 
             IPv4 addressStart = new IPv4();
             addressStart.Parse(toTest);
+            addressStart.checkParts();
 
-            if (addressStart.ToString() != null)
+            if (addressStart.ToString() != null && addressStart.part4 != 0)
             {
                 addresses.Add(addressStart);
+            } else
+            {
+                quantity = quantity + 1;
             }
 
             for (int i = 0; i < quantity - 1; i++)
@@ -36,8 +40,15 @@ namespace PingThreads
                 newAddress.part2 = addressStart.part2;
                 newAddress.part3 = addressStart.part3;
                 newAddress.part4 = addressStart.part4 + (i + 1);
-                
-                addresses.Add(newAddress);
+                newAddress.checkParts();
+
+                if (newAddress.part4 != 0)
+                {
+                    addresses.Add(newAddress);
+                } else
+                {
+                    quantity = quantity + 1;
+                }
             }
 
 
