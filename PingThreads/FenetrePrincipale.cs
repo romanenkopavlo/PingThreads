@@ -17,30 +17,33 @@ namespace PingThreads
             tableauResultats.Items.Clear();
             var toTest = textAdresse.Text;
 
-            if (!TestIp(toTest))
-            {
-                MessageBox.Show("Adresse Incorrecte.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
             int pointDeDepart = 0;
             int quantity = Int32.Parse(textBoxQuantite.Text);
-            List<String> addresses = new List<String>();
-            addresses.Add(toTest);
+            List<IPv4> addresses = new List<IPv4>();
+
+            IPv4 addressStart = new IPv4();
+            addressStart.Parse(toTest);
+
+            if (addressStart.ToString() != null)
+            {
+                addresses.Add(addressStart);
+            }
 
             for (int i = 0; i < quantity - 1; i++)
             {
-                String[] partiesAddresse;
-                partiesAddresse = toTest.Split(".");
-                pointDeDepart = Int32.Parse(partiesAddresse[partiesAddresse.Length - 1]);
-                String nouveauAdresse = partiesAddresse[0] + "." + partiesAddresse[1] + "." + partiesAddresse[2] + "." + (pointDeDepart + (i + 1));
-                addresses.Add(nouveauAdresse);
+                IPv4 newAddress = new IPv4();
+                newAddress.part1 = addressStart.part1;
+                newAddress.part2 = addressStart.part2;
+                newAddress.part3 = addressStart.part3;
+                newAddress.part4 = addressStart.part4 + (i + 1);
+                
+                addresses.Add(newAddress);
             }
 
 
-            foreach (String address in addresses)
+            foreach (IPv4 address in addresses)
             {
-                Thread thread = new Thread(() => PingIP(address));
+                Thread thread = new Thread(() => PingIP(address.ToString()));
                 thread.Start();
             }
         }
@@ -72,13 +75,6 @@ namespace PingThreads
             {
                 tableauResultats.Items.Add(item);
             }));
-        }
-
-        private bool TestIp(string toTest)
-        {
-            string pattern = @"^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$";
-            bool isValid = Regex.IsMatch(toTest, pattern);
-            return isValid;
         }
     }
 }
